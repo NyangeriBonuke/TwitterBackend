@@ -1,6 +1,13 @@
-import { Router } from 'express';
-const router = Router()
+import { Router } from 'express'
+import UserController from '../controllers/userController'
 
-router.get('/user', (req, res) => {res.status(200).json('Working')})
+const router = Router()
+const userController = new UserController
+
+router.get('/user', (req, res) => userController.getUsers(req, res))
+router.get('/user/:id', (req, res) => userController.getUser(req, res))
+router.post('/user', (req, res) => userController.createUser(req, res))
+router.put('/user/:id', (req, res) => userController.updateUser(req, res))
+router.delete('/user/:id', (req, res) => userController.deleteUser(req, res))
 
 export default router
