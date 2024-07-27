@@ -1,6 +1,13 @@
 import { Router } from 'express'
-const router = Router()
+import TweetController from '../controllers/tweetController'
 
-router.get('/tweet', (req, res) => {res.status(200).json('Tweet')})
+const router = Router()
+const tweetController = new  TweetController
+
+router.post('/tweet', (req, res) => tweetController.postTweet(req, res))
+router.get('/tweet', (req, res) => tweetController.getTweets(req, res))
+router.get('/tweet/:id', (req, res) => tweetController.getTweet(req, res))
+router.put('/tweet/:id', (req, res) => tweetController.updateTweet(req, res))
+router.delete('/tweet/:id', (req, res) => tweetController.deleteTweet(req, res))
 
 export default router
